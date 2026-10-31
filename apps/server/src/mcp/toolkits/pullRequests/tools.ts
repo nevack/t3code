@@ -42,19 +42,11 @@ export const PullRequestTargetInput = Schema.Struct({
   ),
   url: Schema.optional(
     TrimmedNonEmptyString.annotate({
-      description: "HTTP(S) review URL. For unrecognised formats, also pass repository and number.",
+      description: "Custom HTTP(S) URLs also need repository and number.",
     }),
   ),
-  repository: Schema.optional(
-    TrimmedNonEmptyString.annotate({
-      description: "With `number`, when `url` is absent or unrecognised.",
-    }),
-  ),
-  number: Schema.optional(
-    PositiveInt.annotate({
-      description: "With `repository`, when `url` is absent or unrecognised.",
-    }),
-  ),
+  repository: Schema.optional(TrimmedNonEmptyString),
+  number: Schema.optional(PositiveInt),
   host: Schema.optional(
     TrimmedNonEmptyString.annotate({
       description: "Default: this project's host.",
